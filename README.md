@@ -20,6 +20,8 @@ Put your profiles in *yaml* format, your markdown files with documentation and v
 
 Use `igpop dev` to see results or `igpop build` to generate static pages.
 
+Read more about profiles [here](https://github.com/HealthSamurai/igpop#profiles)
+
 ## Sources
 
 * See full documentation in [home repo](https://github.com/HealthSamurai/igpop.git)
