@@ -1,0 +1,19 @@
+language: clojure
+before_install: echo $HOME
+
+install:
+  - curl -O https://download.clojure.org/install/linux-install-1.10.1.469.sh
+  - chmod +x linux-install-1.10.1.469.sh
+  - sudo ./linux-install-1.10.1.469.sh
+  - rm linux-install-1.10.1.469.sh
+
+before_deploy:
+  - java -jar "../node_modules/igpop/bin/igpop.jar" build "/igpop" igpop.core
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
