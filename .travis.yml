@@ -7,6 +7,9 @@ install:
   - sudo ./linux-install-1.10.1.469.sh
   - rm linux-install-1.10.1.469.sh
 
+script:
+  - echo "skipping tests"
+
 before_deploy:
   - npm install
   - node "./node_modules/igpop/bin/igpop" build "/igpop"
