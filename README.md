@@ -2,7 +2,7 @@
 
 ## Getting started
 
-You can take a look at [Demo](https://healthsamurai.github.io/igpop/profiles/Patient/basic.html) page.
+You can take a look at [Demo](https://healthsamurai.github.io/igpop-example/profiles/Patient/basic.html) page.
 
 To get example project running locally in a dev mode:
 * clone this repo
