@@ -6,7 +6,7 @@ script:
 
 before_deploy:
   - npm install
-  - java -jar "../npm/igpop/bin/igpop.jar" build "/igpop" igpop.core
+  - java -jar "./node_modules/igpop/bin/igpop.jar" build "/igpop" igpop.core
 
 deploy:
   provider: pages
