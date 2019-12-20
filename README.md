@@ -18,7 +18,7 @@ In order to generate static pages for presented profiles, valuesets and docs use
 
 Put your profiles in *yaml* format, your markdown files with documentation and valuesets with 'vs.' prefix in *yaml* or *csv* format into *src* directory.
 
-Use `igpop dev igpop.core` to see results or `igpop build igpop.core` to generate static pages.
+Use `igpop dev igpop.core` to see results or `igpop build {BASEURL_VALUE} igpop.core` to generate static pages.
 
 Read more about profiles [here](https://github.com/HealthSamurai/igpop#profiles)
 
