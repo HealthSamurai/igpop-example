@@ -8,17 +8,17 @@ To get example project running locally in a dev mode:
 * clone this repo
 * use `curl -L -o igpop https://github.com/HealthSamurai/igpop/releases/latest/download/igpop` to download latest igpop version
 * make script executable with `chmod -x igpop`
-* use `igpop dev igpop.core` to start the local server (default port is 8899)
+* use `./igpop dev igpop.core` to start the local server (default port is 8899)
 
 _**Note:**_ you can also set your own port value with `-p {PORT_NAME}` parameter.
 
-In order to generate static pages for presented profiles, valuesets and docs use `igpop build {BASEURL_VALUE} igpop.core`. These pages will be stored in a *build* directory.
+In order to generate static pages for presented profiles, valuesets and docs use `./igpop build {BASEURL_VALUE} igpop.core`. These pages will be stored in a *build* directory.
 
 ## Development
 
 Put your profiles in *yaml* format, your markdown files with documentation and valuesets with 'vs.' prefix in *yaml* or *csv* format into *src* directory.
 
-Use `igpop dev igpop.core` to see results or `igpop build {BASEURL_VALUE} igpop.core` to generate static pages.
+Use `./igpop dev igpop.core` to see results or `./igpop build {BASEURL_VALUE} igpop.core` to generate static pages.
 
 Read more about profiles [here](https://github.com/HealthSamurai/igpop#profiles)
 
