@@ -6,8 +6,7 @@ You can take a look at [Demo](https://healthsamurai.github.io/igpop-example/prof
 
 To get example project running locally in a dev mode:
 * clone this repo
-* use `curl -L -o igpop https://github.com/HealthSamurai/igpop/releases/latest/download/igpop` to download latest igpop version
-* make script executable with `chmod -x igpop`
+* use `npm install` to download latest igpop version
 * use `./igpop dev` to start the local server (default port is 8899)
 
 _**Note:**_ you can also set your own port value with `-p {PORT_NAME}` parameter.
