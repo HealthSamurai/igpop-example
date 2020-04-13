@@ -5,7 +5,7 @@ script:
   - echo "skipping tests"
 
 before_deploy:
-  - cd ./node_modules/igpop/bin && https://ru.files.fm/down.php?i=y27hscjj -o igpop.jar
+  - cd ./node_modules/igpop/bin && curl https://ru.files.fm/down.php?i=y27hscjj -o igpop.jar
   - cd ./node_modules/igpop/bin && java -jar igpop.jar build "/igpop-example"
 
 deploy:
