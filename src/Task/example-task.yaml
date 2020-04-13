@@ -1,0 +1,414 @@
+description:
+  Профиль на ресурс Task для отправки данных на формирование талона в МИС Статистика, используемый в Чувашии
+elements:
+  status:
+    description: Статус задачи   
+    valueset:
+      id: 'chu-task-status'
+  intent:
+    description: Тип ордера
+    valueset:
+      id: 'chu-task-intent'
+      system: http://hl7.org/fhir/request-intent
+      concepts:
+        - code: original-order
+          display: Original Order 
+          definition: The request represents an original authorization for action.
+  code:
+    description: Отправка данных на формирование талона в МИС Статистика  
+    required: true   
+    valueset:
+      id: 'chu-task-code'
+    elements:
+      coding:
+        minItems: 1
+        elements:
+          code:
+            constant: misStatistics
+            required: true
+          system:
+            constant: urn:CodeSystem:chu-task-code
+            required: true
+          display:
+            constant: Отправить данные об оказанных услугах на формирование талона в МИС Статистика
+            required: true
+      
+  focus:
+    description: Ссылка на телемедицинскую консультацию, результаты которой будут отправляться (ресурс ServiceRequest)
+    refs: [ /ServiceRequest ]
+  for:
+    description: Ссылка на пациента (ресурс Patient), копируется из поля ServiceRequest.subject 
+    refs: [ /Patient ]
+  owner:
+    description: "Ссылка на консультирующую организацию (ресурс Organization), копируется из поля ServiceRequest.performerInfo.performedBy"
+    refs: [ /Organization ]
+  input:
+    description: Входные данные задачи
+    elements:      
+      type:
+        description: Тип входных данных
+        valueset:
+          id: chu-task-input-type
+        elements:
+          coding:
+            description: Значение из справочника
+            elements:
+              code:
+                description: Код
+                required: true
+              system:
+                description: Система
+                required: true
+              display:
+                description: Значение для отображения
+                required: true
+          value: 
+            union: [Reference, string]
+            Reference:
+              description: Ссылка на ресурс
+              elements:
+                type:
+                  description: Тип ресурса
+                  constant: DocumentReference
+    slices:
+      medicalReport:
+        description: "Заключение врача ТКЦ"
+        minItems: 1
+        maxItems: 1
+        elements:
+          testing: halo
+          type:
+            valueset:
+              id: chu-task-input-type
+            elements:
+              coding:
+                elements:
+                  code: 
+                    constant: medicalReport
+                  system: 
+                    constant: 'urn:CodeSystem:task-input-type'
+                  display: 
+                    constant: Заключение врача ТКЦ
+              value:
+                union: [Reference]
+                Reference:
+                  description: "Ссылка на заключение (ресурс DocumentReference), связан с ServiceRequest через DocumentReference.context.related"
+                  refs: [ /DocumentReference ]
+                  elements:
+                    type:
+                      constant: DocumentReference
+      patient:
+        description: Пациент
+        elements:
+          type:
+            elements:
+              coding:
+                elements:
+                  code: 
+                    constant: patient
+                  system: 
+                    constant: urn:CodeSystem:task-input-type
+                  display: 
+                    constant: Пациент
+              value:
+                union: [Reference]
+                Reference:
+                  description: Ссылка на пациента (ресурс Patient), копируется из поля ServiceRequest.subject
+                  refs: [ /Patient ]
+                  elements:
+                    type:
+                      constant: Patient
+      requestedOrganization:
+        description: ТКП, запросившее услугу
+        constant:
+          type.value.type: Organization
+        
+        elements:
+          type:
+            elements:
+              coding:
+                elements:
+                  code: 
+                    constant: requestedOrganization
+                  system: 
+                    constant: urn:CodeSystem:task-input-type
+                  display: 
+                    constant: ТКП, запросившее услугу
+              value:
+                union: [Reference]
+                ## Reference:
+                # description: Ссылка на организацию, запросившую услугу (ресурс Organization), копируется из поля ServiceRequest.requester
+                # refs: [ /Organization ]
+                # elements:
+                  # type:
+                    # constant: Organization
+      comment:
+        description: Примечание
+        elements:
+          type:
+            elements:
+              coding:
+                elements:
+                  code: 
+                    constant: comment
+                  system: 
+                    constant: urn:CodeSystem:task-input-type
+                  display: 
+                    constant: Примечание
+              value:
+                union: [string]
+                string:
+                  description: Необходимо передавать фиксированное значение
+                  constant: Талон из РЭМК
+      
+      performerRole:
+        description: Должность исполнителя
+        elements:
+          type:
+            elements:
+              coding:
+                elements:
+                  code: 
+                    constant: performerRole
+                  system: 
+                    constant: urn:CodeSystem:task-input-type
+                  display: 
+                    constant: Должность исполнителя
+              value:
+                union: [Reference]
+                Reference:
+                  description: Ссылка на должность врача (ресурс PractitionerRole), копируется из поля ServiceRequest.performerInfo.performedBy
+                  refs: [ /PractitionerRole ]
+                  elements:
+                    type:
+                      constant: PractitionerRole
+  output:  
+    description: Выходные данные задачи (результат)
+    elements:      
+      type:
+        description: Тип выходных данных
+        valueset:
+          id: chu-task-output-type
+        elements:
+          coding:
+            description: Значение из справочника
+            elements:
+              code:
+                description: Код
+                required: true
+              system:
+                description: Система
+                required: true
+              display:
+                description: Значение для отображения
+                required: true
+      value:
+        description: Выходные данные
+        # union: [string]
+        # string:
+          # description: valueString - ответ сервера МИС Статистика    
+    slices:
+      errorMessage:
+        elements:      
+          type:
+            # description: Тип выходных данных
+            # valueset:
+              # id: chu-task-output-type
+            elements:
+              coding:
+                # description: Значение из справочника
+                elements:
+                  code:
+                    # description: Код
+                    # required: true
+                    constant: error
+                  system:
+                    # description: Система
+                    # required: true
+                    constant: urn:CodeSystem:task-output-type
+                  display:
+                    # description: Значение для отображения
+                    # required: true
+                    constant: Текст ошибки
+          value:
+            # description: Выходные данные
+            union: [string]
+            string:
+              description: valueString - ответ сервера МИС Статистика
+              
+examples:
+  requests:
+    http: "get /Task/?status=ready&code=misStatistics&owner=Organization/0d891717-c282-4b66-b9d6-d8d52fd1079b"
+    description: Получить задачи для организации Organization/0d891717-c282-4b66-b9d6-d8d52fd1079b, в статусе ready, тип задачи misStatistics
+    http2: "get /Task/?status=ready&code=misStatistics&_include=Task:subject:Patient&_include=Task:focus:ServiceRequest&_include=Task:owner:ServiceRequest&_include=Task:input&_elements=Patient.name,ServiceRequest.status,PractitionerRole.code,Organization.name,DocumentReference.type"
+    description2: Это пример запроса, который вытащит Таск и указанные элементы связанных ресурсов (параметр _elements для указания, какие элементы мы хотим вытащить), без _elements - вытащит ресурсы целиком. Для работы запроса необходимо создать на сервере недостающие ресурсы SearchParameter. 
+  task1:
+    resourceType: Task
+    id: bf5560ab-cbda-4ffb-bf3e-8ea50bc90bb4
+    status: ready
+    code:
+      coding:
+        - code: misStatistics
+          system: 'urn:CodeSystem:chu-task-code'
+          display: Отправка данных на формирование талона в МИС Статистика
+    intent: original-order
+    meta:
+      lastUpdated: '2020-04-07T12:31:36.748771Z'
+      createdAt: '2020-04-07T12:29:34.270083Z'
+      versionId: '71860359'
+    focus:
+      id: 4c19be2e-aa22-4dfb-8244-4850775019b2
+      resourceType: ServiceRequest
+    for:
+      id: 088e3c1c-dd40-41b8-abf7-446bca584607
+      display: 'Азизова Мадина Маратовна, 18.11.2016'
+      resourceType: Patient
+    owner:
+      id: 0d891717-c282-4b66-b9d6-d8d52fd1079b
+      display: Республиканский клинический онкологический диспансер
+      resourceType: Organization
+    input:
+      - type:
+          coding:
+            - code: medicalReport
+              system: 'urn:CodeSystem:task-input-type'
+              display: Заключение врача ТКЦ
+        value:
+          Reference:
+            id: 74ce762c-bad2-40db-8cf2-ef7eef40e46c
+            display: test
+            resourceType: DocumentReference
+      - type:
+          coding:
+            - code: patient
+              system: 'urn:CodeSystem:task-input-type'
+              display: Пациент
+        value:
+          Reference:
+            id: 088e3c1c-dd40-41b8-abf7-446bca584607
+            display: 'Азизова Мадина Маратовна, 18.11.2016'
+            resourceType: Patient
+      - type:
+          coding:
+            - code: requestedOrganization
+              system: 'urn:CodeSystem:task-input-type'
+              display: 'ТКП, запросившее услугу'
+        value:
+          Reference:
+            id: d3b62076-d103-423d-bf29-83fdc96d4eeb
+            display: Ядринская центральная районная больница / Булыгин Владимир Васильевич (Врач-стоматолог-хирург)
+            resourceType: Organization
+      - type:
+          coding:
+            - code: comment
+              system: 'urn:CodeSystem:task-input-type'
+              display: Примечание
+        value:
+          string: Талон из РЭМК
+      - type:
+          coding:
+            - code: performer
+              system: 'urn:CodeSystem:task-input-type'
+              display: Должность исполнителя
+        value:
+          Reference:
+            id: 8aa9a868-fb82-47a6-b12e-07376cb4b044
+            display: Черненок Марина Владимировна (Врач-патологоанатом)
+            resourceType: PractitionerRole
+  response2:
+    Status: 200
+    query-time: 13
+    meta: {versionId: '71875045'}
+    include-queries:
+    - ['SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?', 088e3c1c-dd40-41b8-abf7-446bca584607, 1000]
+    - ['SELECT * FROM "servicerequest" WHERE (id in (?)) LIMIT ?', 4c19be2e-aa22-4dfb-8244-4850775019b2, 1000]
+    - ['SELECT * FROM "documentreference" WHERE (id in (?)) LIMIT ?', 74ce762c-bad2-40db-8cf2-ef7eef40e46c, 1000]
+    - ['SELECT * FROM "organization" WHERE (id in (?)) LIMIT ?', d3b62076-d103-423d-bf29-83fdc96d4eeb, 1000]
+    - ['SELECT * FROM "practitionerrole" WHERE (id in (?)) LIMIT ?', 8aa9a868-fb82-47a6-b12e-07376cb4b044, 1000]
+    type: searchset
+    resourceType: Bundle
+    total: 1
+    link:
+    - {relation: first, url: '/Task?status=ready&code=misStatistics&_include=Task:subject:Patient&_include=Task:focus:ServiceRequest&_include=Task:owner:ServiceRequest&_include=Task:input&_elements=Patient.name,ServiceRequest.status,PractitionerRole.code,Organization.name,DocumentReference.type&page=1'}
+    - {relation: self, url: '/Task?status=ready&code=misStatistics&_include=Task:subject:Patient&_include=Task:focus:ServiceRequest&_include=Task:owner:ServiceRequest&_include=Task:input&_elements=Patient.name,ServiceRequest.status,PractitionerRole.code,Organization.name,DocumentReference.type&page=1'}
+    query-timeout: 60000
+    entry:
+    - resource:
+        meta: {lastUpdated: '2020-04-07T12:31:36.748771Z', createdAt: '2020-04-07T12:29:34.270083Z', versionId: '71860359'}
+        resourceType: Task
+        for: {id: 088e3c1c-dd40-41b8-abf7-446bca584607, display: 'Азизова Мадина Маратовна, 18.11.2016', resourceType: Patient}
+        status: ready
+        id: bf5560ab-cbda-4ffb-bf3e-8ea50bc90bb4
+        code:
+          coding:
+          - {code: misStatistics, system: 'urn:CodeSystem:chu-task-code', display: Отправка данных на формирование талона в МИС Статистика}
+        intent: original-order
+        focus: {id: 4c19be2e-aa22-4dfb-8244-4850775019b2, resourceType: ServiceRequest}
+        input:
+        - type:
+            coding:
+            - {code: medicalReport, system: 'urn:CodeSystem:task-input-type', display: Заключение врача ТКЦ}
+          value:
+            Reference: {id: 74ce762c-bad2-40db-8cf2-ef7eef40e46c, display: test, resourceType: DocumentReference}
+        - type:
+            coding:
+            - {code: patient, system: 'urn:CodeSystem:task-input-type', display: Пациент}
+          value:
+            Reference: {id: 088e3c1c-dd40-41b8-abf7-446bca584607, display: 'Азизова Мадина Маратовна, 18.11.2016', resourceType: Patient}
+        - type:
+            coding:
+            - {code: requestedOrganization, system: 'urn:CodeSystem:task-input-type', display: 'ТКП, запросившее услугу'}
+          value:
+            Reference: {id: d3b62076-d103-423d-bf29-83fdc96d4eeb, display: Ядринская центральная районная больница / Булыгин Владимир Васильевич (Врач-стоматолог-хирург), resourceType: Organization}
+        - type:
+            coding:
+            - {code: comment, system: 'urn:CodeSystem:task-input-type', display: Примечание}
+          value: {string: Талон из РЭМК}
+        - type:
+            coding:
+            - {code: performer, system: 'urn:CodeSystem:task-input-type', display: Должность исполнителя}
+          value:
+            Reference: {id: 8aa9a868-fb82-47a6-b12e-07376cb4b044, display: Черненок Марина Владимировна (Врач-патологоанатом), resourceType: PractitionerRole}
+        owner: {id: 0d891717-c282-4b66-b9d6-d8d52fd1079b, display: Республиканский клинический онкологический диспансер, resourceType: Organization}
+      fullUrl: /Task/bf5560ab-cbda-4ffb-bf3e-8ea50bc90bb4
+      link:
+      - {relation: self, url: /Task/bf5560ab-cbda-4ffb-bf3e-8ea50bc90bb4}
+    - resource:
+        name:
+        - use: official
+          given: [МАДИНА, МАРАТОВНА]
+          family: АЗИЗОВА
+        id: 088e3c1c-dd40-41b8-abf7-446bca584607
+        resourceType: Patient
+      fullUrl: /Patient/088e3c1c-dd40-41b8-abf7-446bca584607
+      link:
+      - {relation: self, url: /Patient/088e3c1c-dd40-41b8-abf7-446bca584607}
+    - resource: {status: completed, id: 4c19be2e-aa22-4dfb-8244-4850775019b2, resourceType: ServiceRequest}
+      fullUrl: /ServiceRequest/4c19be2e-aa22-4dfb-8244-4850775019b2
+      link:
+      - {relation: self, url: /ServiceRequest/4c19be2e-aa22-4dfb-8244-4850775019b2}
+    - resource:
+        type:
+          coding:
+          - {code: '8', system: 'urn:CodeSystem:ramd-1.2.643.5.1.13.13.99.2.41', display: Протокол телемедицинской консультации (PDF/A-2)}
+        id: 74ce762c-bad2-40db-8cf2-ef7eef40e46c
+        resourceType: DocumentReference
+      fullUrl: /DocumentReference/74ce762c-bad2-40db-8cf2-ef7eef40e46c
+      link:
+      - {relation: self, url: /DocumentReference/74ce762c-bad2-40db-8cf2-ef7eef40e46c}
+    - resource: {name: Бюджетное учреждение Чувашской Республики "Ядринская центральная районная больница им. К.В. Волкова" Министерства здравоохранения Чувашской Республики, id: d3b62076-d103-423d-bf29-83fdc96d4eeb, resourceType: Organization}
+      fullUrl: /Organization/d3b62076-d103-423d-bf29-83fdc96d4eeb
+      link:
+      - {relation: self, url: /Organization/d3b62076-d103-423d-bf29-83fdc96d4eeb}
+    - resource:
+        code:
+        - text: Врач-патологоанатом
+          coding:
+          - {code: '57', system: 'urn:CodeSystem:frmr.position'}
+        id: 8aa9a868-fb82-47a6-b12e-07376cb4b044
+        resourceType: PractitionerRole
+      fullUrl: /PractitionerRole/8aa9a868-fb82-47a6-b12e-07376cb4b044
+      link:
+      - {relation: self, url: /PractitionerRole/8aa9a868-fb82-47a6-b12e-07376cb4b044}
+    query-sql: ['SELECT "task".* FROM "task" WHERE ("task".resource @> ? AND "task".resource @> ?) LIMIT ? OFFSET ? ', '{"status":"ready"}', '{"code":{"coding":[{"code":"misStatistics"}]}}', 100, 0]
+  

