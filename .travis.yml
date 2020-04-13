@@ -5,8 +5,8 @@ script:
   - echo "skipping tests"
 
 before_deploy:
-  - curl https://ru.files.fm/down.php?i=y27hscjj -o igpop.jar
-  - java -jar igpop.jar build "/igpop-example"
+  - npm install
+  - java -jar "./node_modules/igpop/bin/igpop.jar" build "/igpop-example"
 
 deploy:
   provider: pages
