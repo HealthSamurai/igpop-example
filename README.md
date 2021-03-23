@@ -5,9 +5,15 @@
 You can take a look at [Demo](https://healthsamurai.github.io/igpop-example/profiles/Patient/basic.html) page.
 
 To get example project running locally in a dev mode:
-* clone this repo
-* use `npm install` to download latest igpop version
-* use `./igpop dev` to start the local server (default port is 8899)
+
+* clone the repo
+* cd ig-ae
+* execute `npm install` in a command line
+* run `git submodule init`
+* run `git submodule update`
+* execute `./igpop.sh dev` in the command line to run a local server on 8899 (may be changed with -p param: `./igpop.sh dev -p 8891`)
+* or `./igpop dev` (on Windows)
+* navigate to http://localhost:8899 to see the IG site running
 
 _**Note:**_ you can also set your own port value with `-p {PORT_NAME}` parameter.
 
