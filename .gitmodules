@@ -1,0 +1,3 @@
+[submodule "igpop"]
+	path = igpop
+	url = https://github.com/HealthSamurai/igpop.git
