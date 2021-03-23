@@ -1,5 +1,19 @@
 description:
   Профиль на ресурс Task для отправки данных на формирование талона в МИС Статистика, используемый в Чувашии
+  
+name: "Task"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Task
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Task"
+derivation: constraint
+title: 'Chuvashia Core Task Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "Chuvashia Core"
+
 elements:
   status:
     description: Статус задачи   

@@ -1,5 +1,18 @@
 description: This profile sets minimum expectations for searching and fetching Diagnostic ...
 
+name: "DiagnosticReport"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: DiagnosticReport
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"
+derivation: constraint
+title: 'US Core DiagnosticReport Profile 2'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements: 
   status: {}
   category: {vsr: diagnosticreport-category}

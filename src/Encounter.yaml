@@ -4,6 +4,19 @@ description: |
   identifies which core elements, extensions, vocabularies and value sets SHALL
   be present in the resource when using this profile.
 
+name: "Encounter"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Encounter
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Encounter"
+derivation: constraint
+title: 'US Core Encounter Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   identifier:
     elements:

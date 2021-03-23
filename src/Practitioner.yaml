@@ -1,4 +1,17 @@
-description: Это про врача
+description: This profile sets minimum expectations for the Practitioner resource
+
+name: "Practitioner"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Practitioner
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Practitioner"
+derivation: constraint
+title: 'US Core Practitioner Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
 
 elements:
   id:

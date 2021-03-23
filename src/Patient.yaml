@@ -5,6 +5,19 @@ description:
   vocabularies and value sets SHALL be present in the resource when using this
   profile.
 
+name: "Patient"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Patient
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Patient"
+derivation: constraint
+title: 'US Core Patient Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   extension:
     race:

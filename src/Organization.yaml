@@ -4,6 +4,19 @@ desc: |
   provider. It identifies which core elements, extensions, vocabularies and
   value sets SHALL be present in the resource when using this profile.
 
+name: "Organization"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Organization
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Organization"
+derivation: constraint
+title: 'US Core Organization Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   identifier[]:
     minItems: 1

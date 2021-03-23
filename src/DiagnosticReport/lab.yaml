@@ -10,6 +10,19 @@ description: |
   elements, extensions, vocabularies and value sets SHALL be present in the
   resource when using this profile.
 
+name: "DiagnosticReport"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: DiagnosticReport
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"
+derivation: constraint
+title: 'US Core DiagnosticReport Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 rule:
   oneof: [result, presentedForm]
 elements: 

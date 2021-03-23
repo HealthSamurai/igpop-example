@@ -1,0 +1,23 @@
+description: Defines possible condition outcomes
+content: complete
+title: Condition Outcome
+name: ConditionOutcome
+version: 0.1.0
+status: active
+date: 2021-01-19T13:20:31+00:00
+publisher: AstraZeneca
+concepts:
+- code: resolved
+  display: Resolved
+- code: recovering
+  display: Recovering
+- code: ongoing
+  display: Ongoing
+- code: resolvedWithSequelae
+  display: Resolved with Sequelae
+- code: fatal
+  display: Fatal
+- code: unknown
+  display: Unknown
+- code: recovered
+  display: Recovered

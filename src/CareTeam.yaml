@@ -3,6 +3,19 @@ description: |
   the Care Team members associated with a patient. It identifies which core elements,
   extensions, vocabularies and value sets SHALL be present in the resource when using this profile.
 
+name: "CareTeam"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: CareTeam
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/CareTeam"
+derivation: constraint
+title: 'US Core CareTeam Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   status: { valueset: {id: 'fhir:careteam-status' }} 
   subject:

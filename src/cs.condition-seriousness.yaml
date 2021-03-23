@@ -1,0 +1,21 @@
+description: Defines condition seriousness
+content: complete
+title: Condition Seriousness
+name: ConditionSeriousness
+version: 0.1.0
+status: active
+date: 2021-01-19T13:20:31+00:00
+publisher: AstraZeneca
+concepts:
+- code: less-severe
+  display: Less severe
+- code: recovered
+  display: Recovered
+- code: not-recovered
+  display: Not recovered
+- code: recovered-seq
+  display: Recovered with Sequela
+- code: death
+  display: Death
+- code: unknown
+  display: Unknown

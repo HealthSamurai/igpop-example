@@ -4,6 +4,19 @@ description: |
   It identifies which core elements,
   extensions, vocabularies and value sets SHALL be present in the resource when using this profile.
 
+name: "Condition"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Condition
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Condition"
+derivation: constraint
+title: 'US Core Condition Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   clinicalStatus:
     valueset: {id: 'fhir:condition-clinical'}

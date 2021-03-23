@@ -9,6 +9,19 @@ description: |
  which core elements, extensions, vocabularies and value sets SHALL be present
  in the resource when using this profile.
 
+name: "Observation"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Observation
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Observation"
+derivation: constraint
+title: 'US Core Observation Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   status: { required: true, valueset: { id: 'fhir:observation-status' } }
   category:

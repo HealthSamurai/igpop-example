@@ -4,6 +4,19 @@ description:
   It identifies which core elements, extensions, vocabularies and value sets
   SHALL be present in the resource when using this profile.
 
+name: "CarePlan"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: CarePlan
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/CarePlan"
+derivation: constraint
+title: 'US Core CarePlan Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
+
 elements:
   subject: { required: true, refs: [ ./Patient ] } 
   text:

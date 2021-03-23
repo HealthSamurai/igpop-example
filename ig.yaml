@@ -1,5 +1,6 @@
 id: us-core
+prefix: ''
 title: FHIR US-Core
-url: http://hl7.org/fhir/us/core/
+url: https://healthsamurai.github.io/igpop-example
 description: US Core Implementation Guide R4
 fhir: 4.0.0

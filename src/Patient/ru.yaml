@@ -1,5 +1,18 @@
 description: Базовый Профайл для Пациента
 
+name: "Patient"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: Patient
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/Patient"
+derivation: constraint
+title: 'RU Core Patient Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "RU Core"
+
 elements:
   id: {}
   identifier: # []

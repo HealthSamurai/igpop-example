@@ -4,6 +4,18 @@ description: |
   It identifies the mandatory core elements, extensions, vocabularies and value sets
   which SHALL be present in the AllergyIntolerance resource when using this profile.
 
+name: "AllergyIntolerance"
+status: active
+fhirVersion: '4.0.1'
+kind: resource
+abstract: false
+type: AllergyIntolerance
+baseDefinition: "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance"
+derivation: constraint
+title: 'US Core AllergyIntolerance Profile'
+experimental: false
+date: "2021-03-23"
+publisher: "US Core"
 
 elements:
   code:
