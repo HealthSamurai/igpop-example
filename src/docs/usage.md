@@ -1,249 +1,210 @@
 ---
-title: Usage Page
+title: Usage
 ---
 
+# Usage
 ---
-__Advertisement :)__
-
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-  resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-  i18n with plurals support and easy syntax.
-
-You will like those projects!
-
 ---
 
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-
-
-## Horizontal Rules
-
-___
-
+## Development
 ---
 
-***
+### Run a Local Server
+---
 
+In order to develop the implementation guide, do the following steps:
 
-## Typographic replacements
+- Clone the repository [https://github.com/HealthSamurai/igpop-example](https://github.com/HealthSamurai/igpop-example)
 
-Enable typographer option to see result.
+```git clone https://github.com/HealthSamurai/igpop-example.git```
 
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+- browse to the igpop-example folder
 
-test.. test... test..... test?..... test!....
+```cd igpop-example```
 
-!!!!!! ???? ,,  -- ---
+- Install modules
 
-"Smartypants, double quotes" and 'single quotes'
+```npm install```
 
+- Init submodules
 
-## Emphasis
+```git submodule init```
 
-**This is bold text**
+- Update submodules
 
-__This is bold text__
+```git submodule update```
 
-*This is italic text*
+- Run a local server on the 8891 port (or specify another port if needed)
 
-_This is italic text_
+```./igpop.sh dev -p 8891```
 
-~~Strikethrough~~
+- Navigate to the [http://localhost:8891](http://localhost:8891) to see results of editing
 
+Console output:
 
-## Blockquotes
-
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-
-
-## Lists
-
-Unordered
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
+```/igpop-example
+$ ./igpop.sh dev -p 8891
+Dev... (dev -p 8891)
+Run server on http://localhost: 8891
 ```
 
-Syntax highlighting
 
-``` js
-var foo = function (bar) {
-  return bar++;
-};
+### Project Structure and Configuration
+---
 
-console.log(foo(5));
+![Project structure](https://github.com/HealthSamurai/igpop-example/blob/master/src/images/project_structure.png?raw=true)
+
+
+- Update the ig.yaml file in the project root folder:
+
+`id:`  prefix for your FHIR resources<br>
+`title:` title displayed on the home page of your IG site<br>
+`url:` base URL for your profiles (StructureDefinition.url and fixedUri)<br>
+`description:` your IG general description<br>
+`fhir:` FHIR version (current value is 4.0.0)<br>
+
+
+![ig.yaml](https://github.com/HealthSamurai/igpop-example/blob/master/src/images/igyaml.png?raw=true)
+
+- You will need to stop and start server to apply ig.yaml changes
+
+
+## Edit Profiles and ValueSets
+---
+
+When you are running profiles locally, you can edit them directly on the site:
+
+![Editing](https://github.com/HealthSamurai/igpop-example/blob/master/src/images/editing.gif?raw=true)
+
+
+## Download Structure Definitions
+---
+
+- Click the Package link to download a package of FHIR StructureDefinitions and ValueSets
+- The package will be downloaded as a zip-archive
+- Unzip the archive
+- Browse the folder
+- The folder will contain FHIR StructureDefinitions and ValueSets
+
+![Package](https://github.com/HealthSamurai/igpop-example/blob/master/src/images/package.gif?raw=true)
+
+## Validate Generated Structure Definitions
+--- 
+
+- Having that you downloaded and unzipped the archive with generated structure definitions, you can validate them against the base FHIR specification and your IG.
+- Download the official FHIR [validator](https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar) — a Java jar file that can be used to validate resources ([download page](http://build.fhir.org/downloads.html)). (See the [Validator documentation](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator))
+- Say, you've extracted files to the `adverse-event-profile` folder. Then, you will run the following command from the parent folder.
+- Run the validator:
+
+```java -jar validator_cli.jar -version 4.0.1 profiles-folder/* -ig ig-folder/ -recurse```
+
+See more [Using the FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator).
+
+
+## Validate Resources against AZ Profiles
+--- 
+
+### Validate against an IG as a FHIR Package .tgz file's URL
+
+- You can specify an IG .tgz file to validate against in the command:
+
+```java -jar validator_cli.jar -version 4.0.1 path/to/resource -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz  -profile profile/StructureDefinition/url```
+
+- Example 1:
+
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent```
+
+- Example 2:
+
+```java -jar validator_cli.jar -version 4.0.1 "docs/for review/fixed/New Adverse Event FHIR payload.json" -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent```
+
+- Example 3 (fast):
+
+```java -jar validator_cli.jar -version 4.0.1 "docs/for review/fixed/New Adverse Event FHIR payload.json" -tx n/a```
+
+- Example 4:
+
+```java -jar validator_cli.jar -version 4.0.1 "docs/for review/fixed/New Adverse Event FHIR payload.json" -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz -tx n/a```
+
+
+### Validate against an IG as a FHIR Package .tgz local file
+
+- You can specify an IG .tgz local file to validate against in the command:
+
+```java -jar validator_cli.jar -version 4.0.1 path/to/resource.json -ig D:/path/to/package.tgz -profile profile/canonical/url```
+
+- Example:
+  
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig D:/Work/Healthsamurai/az-fhir-profiles/package.tgz -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent```
+
+
+### Validate against an IG as a local folder
+
+- You can download an IG files and validate resources against it with the `recurse` parameter:
+
+```java -jar validator_cli.jar -version 4.0.1 path/to/resource -ig path/to/ig/folder/ -recurse -profile profile/canonical/url```
+
+- Example:
+
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig adverse-event-profile/ -recurse -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent```
+
+### Validate a resource with meta element
+
+- You can specify profiles to validate against in the resource's `meta` element:
+
 ```
+"meta": {
+    "profile": ["https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent"]
+  }
+```  
+  
+- Then, you can run the following command without specifying the `profile` parameter:  
 
-## Tables
+```java -jar validator_cli.jar -version 4.0.1 path/to/resource -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz```
 
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+- Example:
+  
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz```
 
-Right aligned columns
+### Validation without a terminology server
 
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+- Sometimes a terminology server is unavailable. You can set the following parameter to validate without a terminology server.
 
+```-tx n/a``` 
 
-## Links
+- Example: 
+  
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent -tx n/a```
 
-[link text](http://dev.nodeca.com)
+### Validate against a FHIR Package published to FHIR Registry
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+[Sample FHIR Package](http://registry.fhir.org/package/hl7.fhir.us.patient-reported-outcomes%7C0.2.0)
 
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -ig hl7.fhir.us.patient-reported-outcomes```
 
+### Validate against an IG files by their URLs
 
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+```java -jar validator_cli.jar -version 4.0.1 resourcesToValidate/adverseEventSample.json -profile https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-AZEmployeeReporter.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-lateReason.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-localReference.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-positiveDechallenge.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-positiveRechallenge.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-programNumber.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-rechallenge.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-reporterType.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-sourceType.json -ig https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent-surveyStatus.json -ig https://healthsamurai.github.io/igpop-example/ValueSet/survey-status.json -ig https://healthsamurai.github.io/igpop-example/ValueSet/intelligent-source.json```
 
 
-## Plugins
 
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
+### Validating a single resource in a bundle
 
+To validate a particular resource in the bundle against a given profile: 
 
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+-bundle {entry rule} {profile url}
 
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
+This invokes the nominated profile (by canonical URL) on any entry in any bundle validated that meets the entry rule. The entry rule is either a Resource name, a integer index, or both:
 
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
+* Patient - validate any patient against the nominated profile 
+* 1 - validate the 1th resource (actually the second - index is 0 based) against the nominated profile
+* Patient:0 - validate the first patient resource against the nominated profile
 
+#### Example:
 
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
+```java -jar validator_cli.jar path/to/bundle.json -version 4.0.1 -ig https://github.com/HealthSamurai/igpop-example/raw/master/package/package.tgz -bundle Patient:0 https://healthsamurai.github.io/igpop-example/StructureDefinition/AdverseEvent```
 
-- 19^th^
-- H~2~O
+## Create new profile
 
+See the [IGPOP spec](https://github.com/HealthSamurai/igpop/blob/master/igpop.md).
 
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
