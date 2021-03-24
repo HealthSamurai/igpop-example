@@ -1,0 +1,27 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "us-core-condition-category",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/us-core-condition-category",
+  "name" : "UsCoreConditionCategory",
+  "title" : "us core condition category",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+      "concept" : [ {
+        "code" : "problem-list-item",
+        "displaY" : "Problem List",
+        "definition" : "Item\tAn item on a problem list that can be managed over time and can be expressed by a practitioner (e.g. physician, nurse), patient, or related person."
+      }, {
+        "code" : "encounter-diagnosis",
+        "display" : "Encounter",
+        "definition" : "Diagnosis\tA point in time diagnosis (e.g. from a physician or nurse) in context of an encounter."
+      }, {
+        "code" : "health-concern",
+        "display" : "Health Concern",
+        "definition" : "Additional health concerns from other stakeholders which are outside the provider’s problem list."
+      } ]
+    } ]
+  }
+}

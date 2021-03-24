@@ -1,0 +1,18 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "smoking-status-observation-codes",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/smoking-status-observation-codes",
+  "name" : "SmokingStatusObservationCodes",
+  "title" : "smoking status observation codes",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "concept" : [ {
+        "code" : "72166-2",
+        "system" : "http://loinc.org",
+        "display" : "Tobacco smoking status NHIS"
+      } ]
+    } ]
+  }
+}

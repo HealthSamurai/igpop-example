@@ -1,0 +1,76 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Patient-ru",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Patient-ru",
+  "name" : "Patient",
+  "title" : "RU Core Patient Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "RU Core",
+  "description" : "Базовый Профайл для Пациента",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Patient",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Patient.id",
+      "path" : "Patient.id",
+      "mustSupport" : true
+    }, {
+      "id" : "Patient.identifier",
+      "path" : "Patient.identifier",
+      "mustSupport" : true,
+      "descrption" : "Идентификаторы пациента такие как паспорт, СНИЛС и т.д."
+    }, {
+      "id" : "Patient.identifier.system",
+      "path" : "Patient.identifier.system",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/patient-identity",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Patient.name",
+      "path" : "Patient.name",
+      "mustSupport" : true
+    }, {
+      "id" : "Patient.name.given",
+      "path" : "Patient.name.given",
+      "mustSupport" : true,
+      "descrption" : "Имя и Отчество пациента. Первым должно идти Имя, вторым Отчество"
+    }, {
+      "id" : "Patient.name.family",
+      "path" : "Patient.name.family",
+      "mustSupport" : true,
+      "descrption" : "Фамилия пациента"
+    }, {
+      "id" : "Patient.gender",
+      "path" : "Patient.gender",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:administrative-gender",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Patient.address",
+      "path" : "Patient.address",
+      "mustSupport" : true,
+      "descrption" : "Адресса пациента"
+    }, {
+      "id" : "Patient.address.line",
+      "path" : "Patient.address.line",
+      "mustSupport" : true
+    }, {
+      "id" : "Patient.address.city",
+      "path" : "Patient.address.city",
+      "mustSupport" : true
+    } ]
+  }
+}

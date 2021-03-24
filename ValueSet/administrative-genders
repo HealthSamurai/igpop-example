@@ -1,0 +1,34 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "administrative-genders",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/administrative-genders",
+  "name" : "AdministrativeGenders",
+  "title" : "administrative genders",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "concept" : [ {
+        "system" : "sys",
+        "code" : "male",
+        "display" : "Male",
+        "definition" : "Make"
+      }, {
+        "system" : "sys",
+        "code" : "female",
+        "display" : "Female",
+        "definition" : "Female"
+      }, {
+        "system" : "sys",
+        "code" : "androgin",
+        "display" : "Androgin",
+        "definition" : ""
+      }, {
+        "system" : "sys",
+        "code" : "unknonw",
+        "display" : "Unknown",
+        "definition" : ""
+      } ]
+    } ]
+  }
+}

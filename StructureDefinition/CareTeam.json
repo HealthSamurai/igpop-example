@@ -1,0 +1,66 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "CareTeam",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/CareTeam",
+  "name" : "CareTeam",
+  "title" : "US Core CareTeam Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for the CareTeam resource for identifying\nthe Care Team members associated with a patient. It identifies which core elements,\nextensions, vocabularies and value sets SHALL be present in the resource when using this profile.\n",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "CareTeam",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/CareTeam",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "CareTeam.status",
+      "path" : "CareTeam.status",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:careteam-status",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "CareTeam.subject",
+      "path" : "CareTeam.subject",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Patient" ]
+      } ]
+    }, {
+      "id" : "CareTeam.participant",
+      "path" : "CareTeam.participant",
+      "mustSupport" : true
+    }, {
+      "id" : "CareTeam.participant.role",
+      "path" : "CareTeam.participant.role",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/careteam-provider-roles",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "CareTeam.participant.member",
+      "path" : "CareTeam.participant.member",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Practitioner" ]
+      }, {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Organization" ]
+      }, {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Patient" ]
+      } ]
+    } ]
+  }
+}

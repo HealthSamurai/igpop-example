@@ -1,0 +1,36 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "careplan-status",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/careplan-status",
+  "name" : "CareplanStatus",
+  "title" : "careplan status",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "system" : "xxx",
+      "concept" : [ {
+        "code" : "draft",
+        "display" : "Draft"
+      }, {
+        "code" : "active",
+        "display" : "Active"
+      }, {
+        "code" : "on-hold",
+        "display" : "On Hold"
+      }, {
+        "code" : "revoked",
+        "display" : "Revoked"
+      }, {
+        "code" : "completed",
+        "display" : "Completed"
+      }, {
+        "code" : "entered-in-error",
+        "display" : "Entered In Error"
+      }, {
+        "code" : "unknown",
+        "display" : "Unknown"
+      } ]
+    } ]
+  }
+}

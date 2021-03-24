@@ -1,0 +1,35 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "condition-outcome",
+  "url" : "https://healthsamurai.github.io/igpop-example/CodeSystem/condition-outcome",
+  "version" : "0.1.0",
+  "name" : "ConditionOutcome",
+  "title" : "Condition Outcome",
+  "status" : "active",
+  "date" : "2021-01-19T13:20:31Z",
+  "publisher" : "AstraZeneca",
+  "description" : "Defines possible condition outcomes",
+  "content" : "complete",
+  "concept" : [ {
+    "code" : "resolved",
+    "display" : "Resolved"
+  }, {
+    "code" : "recovering",
+    "display" : "Recovering"
+  }, {
+    "code" : "ongoing",
+    "display" : "Ongoing"
+  }, {
+    "code" : "resolvedWithSequelae",
+    "display" : "Resolved with Sequelae"
+  }, {
+    "code" : "fatal",
+    "display" : "Fatal"
+  }, {
+    "code" : "unknown",
+    "display" : "Unknown"
+  }, {
+    "code" : "recovered",
+    "display" : "Recovered"
+  } ]
+}

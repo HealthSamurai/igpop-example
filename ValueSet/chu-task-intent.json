@@ -1,0 +1,19 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "chu-task-intent",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-intent",
+  "name" : "ChuTaskIntent",
+  "title" : "chu task intent",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "system" : "http://hl7.org/fhir/request-intent",
+      "concept" : [ {
+        "code" : "original-order",
+        "display" : "Original Order",
+        "definition" : "The request represents an original authorization for action."
+      } ]
+    } ]
+  }
+}

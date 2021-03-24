@@ -1,0 +1,59 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Practitioner",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Practitioner",
+  "name" : "Practitioner",
+  "title" : "US Core Practitioner Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for the Practitioner resource",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Practitioner",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Practitioner.id",
+      "path" : "Practitioner.id",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "id"
+      } ]
+    }, {
+      "id" : "Practitioner.meta",
+      "path" : "Practitioner.meta",
+      "mustSupport" : true
+    }, {
+      "id" : "Practitioner.meta.source",
+      "path" : "Practitioner.meta.source",
+      "mustSupport" : true
+    }, {
+      "id" : "Practitioner.identifier",
+      "path" : "Practitioner.identifier",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Identifier"
+      } ]
+    }, {
+      "id" : "Practitioner.address",
+      "path" : "Practitioner.address",
+      "mustSupport" : true
+    }, {
+      "id" : "Practitioner.name",
+      "path" : "Practitioner.name",
+      "mustSupport" : true
+    }, {
+      "id" : "Practitioner.name.family",
+      "path" : "Practitioner.name.family",
+      "mustSupport" : true
+    }, {
+      "id" : "Practitioner.name.given",
+      "path" : "Practitioner.name.given",
+      "mustSupport" : true
+    } ]
+  }
+}

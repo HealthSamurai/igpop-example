@@ -1,0 +1,77 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "DiagnosticReport-lab",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/DiagnosticReport-lab",
+  "name" : "DiagnosticReport",
+  "title" : "US Core DiagnosticReport Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "Laboratory results are grouped and summarized using the DiagnosticReport\nresource which typically reference Observation resource(s). Each Observation\nresource represents an individual laboratory test and result value or\ncomponent result values, or a “nested” panel (such as a microbial\nsusceptibility panel) which references other observations. They can also be\npresented in report form or as free text. This profile sets minimum\nexpectations for the DiagnosticReport resource to record, search and fetch\nlaboratory results associated with a patient. It identifies which core\nelements, extensions, vocabularies and value sets SHALL be present in the\nresource when using this profile.\n",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "DiagnosticReport",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "DiagnosticReport.status",
+      "path" : "DiagnosticReport.status",
+      "mustSupport" : true,
+      "min" : 1,
+      "valuset" : {
+        "id" : "fhir:diagnostic-report-status"
+      }
+    }, {
+      "id" : "DiagnosticReport.category",
+      "path" : "DiagnosticReport.category",
+      "mustSupport" : true,
+      "valuset" : "diagnosticreport-category"
+    }, {
+      "id" : "DiagnosticReport.code",
+      "path" : "DiagnosticReport.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "valuset" : {
+        "id" : "diagnosticreport-report-and-note-codes"
+      }
+    }, {
+      "id" : "DiagnosticReport.subject",
+      "path" : "DiagnosticReport.subject",
+      "mustSupport" : true,
+      "min" : 1,
+      "refs" : [ "./Patient" ]
+    }, {
+      "id" : "DiagnosticReport.effective[x]",
+      "path" : "DiagnosticReport.effective[x]",
+      "mustSupport" : true,
+      "min" : 1,
+      "desc" : "Specimen Collection Datetime or Period",
+      "type" : [ {
+        "code" : "dateTime"
+      }, {
+        "code" : "Period"
+      } ]
+    }, {
+      "id" : "DiagnosticReport.issued",
+      "path" : "DiagnosticReport.issued",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "DiagnosticReport.result",
+      "path" : "DiagnosticReport.result",
+      "mustSupport" : true,
+      "refs" : [ "./Observation" ]
+    }, {
+      "id" : "DiagnosticReport.presentedForm",
+      "path" : "DiagnosticReport.presentedForm",
+      "mustSupport" : true
+    }, {
+      "id" : "DiagnosticReport.media",
+      "path" : "DiagnosticReport.media",
+      "mustSupport" : true
+    } ]
+  }
+}

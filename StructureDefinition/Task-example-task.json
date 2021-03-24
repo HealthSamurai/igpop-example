@@ -1,0 +1,369 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Task-example-task",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Task-example-task",
+  "name" : "Task",
+  "title" : "Chuvashia Core Task Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "Chuvashia Core",
+  "description" : "Профиль на ресурс Task для отправки данных на формирование талона в МИС Статистика, используемый в Чувашии",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Task",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Task",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Task.status",
+      "path" : "Task.status",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-status",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Task.intent",
+      "path" : "Task.intent",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-intent",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Task.code",
+      "path" : "Task.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-code",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Task.code.coding",
+      "path" : "Task.code.coding",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.code.coding.code",
+      "path" : "Task.code.coding.code",
+      "mustSupport" : true,
+      "fixedCode" : "misStatistics",
+      "min" : 1
+    }, {
+      "id" : "Task.code.coding.system",
+      "path" : "Task.code.coding.system",
+      "mustSupport" : true,
+      "fixedSystem" : "urn:CodeSystem:chu-task-code",
+      "min" : 1
+    }, {
+      "id" : "Task.code.coding.display",
+      "path" : "Task.code.coding.display",
+      "mustSupport" : true,
+      "fixedDisplay" : "Отправить данные об оказанных услугах на формирование талона в МИС Статистика",
+      "min" : 1
+    }, {
+      "id" : "Task.focus",
+      "path" : "Task.focus",
+      "mustSupport" : true,
+      "refs" : [ "/ServiceRequest" ]
+    }, {
+      "id" : "Task.for",
+      "path" : "Task.for",
+      "mustSupport" : true,
+      "refs" : [ "/Patient" ]
+    }, {
+      "id" : "Task.owner",
+      "path" : "Task.owner",
+      "mustSupport" : true,
+      "refs" : [ "/Organization" ]
+    }, {
+      "id" : "Task.input",
+      "path" : "Task.input",
+      "mustSupport" : true,
+      "slices" : {
+        "medicalReport" : {
+          "description" : "Заключение врача ТКЦ",
+          "minItems" : 1,
+          "maxItems" : 1,
+          "elements" : {
+            "testing" : "halo",
+            "type" : {
+              "valueset" : {
+                "id" : "chu-task-input-type"
+              },
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "medicalReport"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-input-type"
+                    },
+                    "display" : {
+                      "constant" : "Заключение врача ТКЦ"
+                    }
+                  }
+                },
+                "value" : {
+                  "union" : [ "Reference" ],
+                  "Reference" : {
+                    "description" : "Ссылка на заключение (ресурс DocumentReference), связан с ServiceRequest через DocumentReference.context.related",
+                    "refs" : [ "/DocumentReference" ],
+                    "elements" : {
+                      "type" : {
+                        "constant" : "DocumentReference"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patient" : {
+          "description" : "Пациент",
+          "elements" : {
+            "type" : {
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "patient"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-input-type"
+                    },
+                    "display" : {
+                      "constant" : "Пациент"
+                    }
+                  }
+                },
+                "value" : {
+                  "union" : [ "Reference" ],
+                  "Reference" : {
+                    "description" : "Ссылка на пациента (ресурс Patient), копируется из поля ServiceRequest.subject",
+                    "refs" : [ "/Patient" ],
+                    "elements" : {
+                      "type" : {
+                        "constant" : "Patient"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestedOrganization" : {
+          "description" : "ТКП, запросившее услугу",
+          "constant" : {
+            "type.value.type" : "Organization"
+          },
+          "elements" : {
+            "type" : {
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "requestedOrganization"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-input-type"
+                    },
+                    "display" : {
+                      "constant" : "ТКП, запросившее услугу"
+                    }
+                  }
+                },
+                "value" : {
+                  "union" : [ "Reference" ]
+                }
+              }
+            }
+          }
+        },
+        "comment" : {
+          "description" : "Примечание",
+          "elements" : {
+            "type" : {
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "comment"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-input-type"
+                    },
+                    "display" : {
+                      "constant" : "Примечание"
+                    }
+                  }
+                },
+                "value" : {
+                  "union" : [ "string" ],
+                  "string" : {
+                    "description" : "Необходимо передавать фиксированное значение",
+                    "constant" : "Талон из РЭМК"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "performerRole" : {
+          "description" : "Должность исполнителя",
+          "elements" : {
+            "type" : {
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "performerRole"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-input-type"
+                    },
+                    "display" : {
+                      "constant" : "Должность исполнителя"
+                    }
+                  }
+                },
+                "value" : {
+                  "union" : [ "Reference" ],
+                  "Reference" : {
+                    "description" : "Ссылка на должность врача (ресурс PractitionerRole), копируется из поля ServiceRequest.performerInfo.performedBy",
+                    "refs" : [ "/PractitionerRole" ],
+                    "elements" : {
+                      "type" : {
+                        "constant" : "PractitionerRole"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }, {
+      "id" : "Task.input.type",
+      "path" : "Task.input.type",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-input-type",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Task.input.type.coding",
+      "path" : "Task.input.type.coding",
+      "mustSupport" : true
+    }, {
+      "id" : "Task.input.type.coding.code",
+      "path" : "Task.input.type.coding.code",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.input.type.coding.system",
+      "path" : "Task.input.type.coding.system",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.input.type.coding.display",
+      "path" : "Task.input.type.coding.display",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.input.type.value[x]",
+      "path" : "Task.input.type.value[x]",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference"
+      }, {
+        "code" : "string"
+      } ],
+      "Reference" : {
+        "description" : "Ссылка на ресурс",
+        "elements" : {
+          "type" : {
+            "description" : "Тип ресурса",
+            "constant" : "DocumentReference"
+          }
+        }
+      }
+    }, {
+      "id" : "Task.output",
+      "path" : "Task.output",
+      "mustSupport" : true,
+      "slices" : {
+        "errorMessage" : {
+          "elements" : {
+            "type" : {
+              "elements" : {
+                "coding" : {
+                  "elements" : {
+                    "code" : {
+                      "constant" : "error"
+                    },
+                    "system" : {
+                      "constant" : "urn:CodeSystem:task-output-type"
+                    },
+                    "display" : {
+                      "constant" : "Текст ошибки"
+                    }
+                  }
+                }
+              }
+            },
+            "value" : {
+              "union" : [ "string" ],
+              "string" : {
+                "description" : "valueString - ответ сервера МИС Статистика"
+              }
+            }
+          }
+        }
+      }
+    }, {
+      "id" : "Task.output.type",
+      "path" : "Task.output.type",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/chu-task-output-type",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Task.output.type.coding",
+      "path" : "Task.output.type.coding",
+      "mustSupport" : true
+    }, {
+      "id" : "Task.output.type.coding.code",
+      "path" : "Task.output.type.coding.code",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.output.type.coding.system",
+      "path" : "Task.output.type.coding.system",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.output.type.coding.display",
+      "path" : "Task.output.type.coding.display",
+      "mustSupport" : true,
+      "min" : 1
+    }, {
+      "id" : "Task.output.value",
+      "path" : "Task.output.value",
+      "mustSupport" : true
+    } ]
+  }
+}

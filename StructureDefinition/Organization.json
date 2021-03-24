@@ -1,0 +1,86 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Organization",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Organization",
+  "name" : "Organization",
+  "title" : "US Core Organization Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc.",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Organization",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Organization.identifier[]",
+      "path" : "Organization.identifier[]",
+      "mustSupport" : true,
+      "min" : 1,
+      "desc" : "Must have an identifier (e.g. NPI)"
+    }, {
+      "id" : "Organization.identifier[].system",
+      "path" : "Organization.identifier[].system",
+      "mustSupport" : true,
+      "req" : true
+    }, {
+      "id" : "Organization.identifier[].value",
+      "path" : "Organization.identifier[].value",
+      "mustSupport" : true,
+      "req" : true
+    }, {
+      "id" : "Organization.active",
+      "path" : "Organization.active",
+      "mustSupport" : true,
+      "req" : true
+    }, {
+      "id" : "Organization.name",
+      "path" : "Organization.name",
+      "mustSupport" : true,
+      "req" : true
+    }, {
+      "id" : "Organization.telecom[]",
+      "path" : "Organization.telecom[]",
+      "mustSupport" : true
+    }, {
+      "id" : "Organization.address[]",
+      "path" : "Organization.address[]",
+      "mustSupport" : true
+    }, {
+      "id" : "Organization.address[].line",
+      "path" : "Organization.address[].line",
+      "mustSupport" : true,
+      "max" : "4"
+    }, {
+      "id" : "Organization.address[].city",
+      "path" : "Organization.address[].city",
+      "mustSupport" : true
+    }, {
+      "id" : "Organization.address[].state",
+      "path" : "Organization.address[].state",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/usps-state",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Organization.address[].postalCode",
+      "path" : "Organization.address[].postalCode",
+      "mustSupport" : true,
+      "desc" : "US Zip Codes"
+    }, {
+      "id" : "Organization.address[].country",
+      "path" : "Organization.address[].country",
+      "mustSupport" : true
+    }, {
+      "id" : "Organization.endpoint[]",
+      "path" : "Organization.endpoint[]",
+      "mustSupport" : true
+    } ]
+  }
+}

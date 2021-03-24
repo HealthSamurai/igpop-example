@@ -1,0 +1,20 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fhir:administrative-gender",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:administrative-gender",
+  "name" : "Fhir:administrativeGender",
+  "title" : "fhir:administrative gender",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "concept" : [ {
+        "code" : "male",
+        "display" : "Мужчина"
+      }, {
+        "code" : "female",
+        "display" : "Женщина"
+      } ]
+    } ]
+  }
+}

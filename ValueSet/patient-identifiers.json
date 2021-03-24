@@ -1,0 +1,21 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "patient-identifiers",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/patient-identifiers",
+  "name" : "PatientIdentifiers",
+  "title" : "patient identifiers",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "system" : "fhir",
+      "concept" : [ {
+        "code" : "myfhir:ssn",
+        "display" : "Social Security Number"
+      }, {
+        "code" : "myfhir:dl",
+        "display" : "Driver License"
+      } ]
+    } ]
+  }
+}

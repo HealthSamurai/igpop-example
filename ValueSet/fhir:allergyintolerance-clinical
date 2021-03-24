@@ -1,0 +1,28 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fhir:allergyintolerance-clinical",
+  "url" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:allergyintolerance-clinical",
+  "name" : "Fhir:allergyintoleranceClinical",
+  "title" : "fhir:allergyintolerance clinical",
+  "status" : "active",
+  "date" : "2021-03-24T12:08:16Z",
+  "compose" : {
+    "include" : [ {
+      "system" : "us-core:us-core-allergy-substance",
+      "concept" : [ {
+        "code" : "active",
+        "display" : "Active",
+        "definition" : "The subject is currently experiencing, or is at risk of, a reaction to the identified substance.\t~active"
+      }, {
+        "code" : "inactive",
+        "display" : "Inactive",
+        "definition" : "The subject is no longer at risk of a reaction to the identified substance.\t~inactive"
+      }, {
+        "code" : "resolved",
+        "display" : "Resolved",
+        "path" : [ "inactive" ],
+        "definition" : "A reaction to the identified substance has been clinically reassessed by testing or re-exposure and is considered no longer to be present. Re-exposure could be accidental, unplanned, or outside of any clinical setting.\t~resolved"
+      } ]
+    } ]
+  }
+}

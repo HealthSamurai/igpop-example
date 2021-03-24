@@ -1,0 +1,32 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "condition-seriousness",
+  "url" : "https://healthsamurai.github.io/igpop-example/CodeSystem/condition-seriousness",
+  "version" : "0.1.0",
+  "name" : "ConditionSeriousness",
+  "title" : "Condition Seriousness",
+  "status" : "active",
+  "date" : "2021-01-19T13:20:31Z",
+  "publisher" : "AstraZeneca",
+  "description" : "Defines condition seriousness",
+  "content" : "complete",
+  "concept" : [ {
+    "code" : "less-severe",
+    "display" : "Less severe"
+  }, {
+    "code" : "recovered",
+    "display" : "Recovered"
+  }, {
+    "code" : "not-recovered",
+    "display" : "Not recovered"
+  }, {
+    "code" : "recovered-seq",
+    "display" : "Recovered with Sequela"
+  }, {
+    "code" : "death",
+    "display" : "Death"
+  }, {
+    "code" : "unknown",
+    "display" : "Unknown"
+  } ]
+}

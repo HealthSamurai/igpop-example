@@ -1,0 +1,52 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Observation-pediatric-bmi-for-age",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Observation-pediatric-bmi-for-age",
+  "name" : "Observation",
+  "title" : "US Core Observation Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "Measurements and simple assertions made about a patient, device or other subject.",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Observation",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Observation.code",
+      "path" : "Observation.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "match" : {
+        "system" : "http://loinc.org",
+        "code" : "59576-9"
+      }
+    }, {
+      "id" : "Observation.value[x]",
+      "path" : "Observation.value[x]",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "Quantity"
+      } ],
+      "Quantity" : {
+        "value" : {
+          "required" : true
+        },
+        "unit" : {
+          "required" : true
+        },
+        "system" : {
+          "const" : "http://unitsofmeasure.org"
+        },
+        "code" : {
+          "const" : "%"
+        }
+      }
+    } ]
+  }
+}

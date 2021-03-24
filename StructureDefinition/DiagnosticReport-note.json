@@ -1,0 +1,72 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "DiagnosticReport-note",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/DiagnosticReport-note",
+  "name" : "DiagnosticReport",
+  "title" : "US Core DiagnosticReport Profile 2",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for searching and fetching Diagnostic ...",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "DiagnosticReport",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "DiagnosticReport.status",
+      "path" : "DiagnosticReport.status",
+      "mustSupport" : true
+    }, {
+      "id" : "DiagnosticReport.category",
+      "path" : "DiagnosticReport.category",
+      "mustSupport" : true,
+      "vsr" : "diagnosticreport-category"
+    }, {
+      "id" : "DiagnosticReport.code",
+      "path" : "DiagnosticReport.code",
+      "mustSupport" : true,
+      "vse" : "report-code"
+    }, {
+      "id" : "DiagnosticReport.subject",
+      "path" : "DiagnosticReport.subject",
+      "mustSupport" : true,
+      "refs" : [ "/Patient" ]
+    }, {
+      "id" : "DiagnosticReport.encounter",
+      "path" : "DiagnosticReport.encounter",
+      "mustSupport" : true,
+      "refs" : [ "/Encounter" ]
+    }, {
+      "id" : "DiagnosticReport.effective[x]",
+      "path" : "DiagnosticReport.effective[x]",
+      "mustSupport" : true,
+      "desc" : "Time of the report or note",
+      "type" : [ {
+        "code" : "dateTime"
+      }, {
+        "code" : "Period"
+      } ]
+    }, {
+      "id" : "DiagnosticReport.issued",
+      "path" : "DiagnosticReport.issued",
+      "mustSupport" : true
+    }, {
+      "id" : "DiagnosticReport.performer",
+      "path" : "DiagnosticReport.performer",
+      "mustSupport" : true,
+      "refs" : [ "/Practitioner /Organization" ]
+    }, {
+      "id" : "DiagnosticReport.media",
+      "path" : "DiagnosticReport.media",
+      "mustSupport" : true
+    }, {
+      "id" : "DiagnosticReport.presentedForm",
+      "path" : "DiagnosticReport.presentedForm",
+      "mustSupport" : true
+    } ]
+  }
+}

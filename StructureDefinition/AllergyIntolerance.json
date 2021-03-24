@@ -1,0 +1,58 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "AllergyIntolerance",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/AllergyIntolerance",
+  "name" : "AllergyIntolerance",
+  "title" : "US Core AllergyIntolerance Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for the AllergyIntolerance resource to record,\nsearch and fetch allergies/adverse reactions associated with a patient.\nIt identifies the mandatory core elements, extensions, vocabularies and value sets\nwhich SHALL be present in the AllergyIntolerance resource when using this profile.\n",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "AllergyIntolerance",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "AllergyIntolerance.code",
+      "path" : "AllergyIntolerance.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/allergy-substance",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "AllergyIntolerance.clinicalStatus",
+      "path" : "AllergyIntolerance.clinicalStatus",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:allergyintolerance-clinical",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "AllergyIntolerance.verificationStatus",
+      "path" : "AllergyIntolerance.verificationStatus",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:allergyintolerance-verification",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "AllergyIntolerance.patient",
+      "path" : "AllergyIntolerance.patient",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Patient-us-core:Patient" ]
+      } ]
+    } ]
+  }
+}

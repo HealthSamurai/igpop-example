@@ -1,0 +1,68 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Condition",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Condition",
+  "name" : "Condition",
+  "title" : "US Core Condition Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for the Condition resource to record,\nsearch and fetch a list of problems and health concerns associated with a patient.\nIt identifies which core elements,\nextensions, vocabularies and value sets SHALL be present in the resource when using this profile.\n",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Condition",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Condition",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Condition.clinicalStatus",
+      "path" : "Condition.clinicalStatus",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:condition-clinical",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Condition.verificationStatus",
+      "path" : "Condition.verificationStatus",
+      "mustSupport" : true,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/fhir:condition-ver-status",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Condition.category",
+      "path" : "Condition.category",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/us-core-condition-category",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Condition.code",
+      "path" : "Condition.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/us-core-problem",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "Condition.subject",
+      "path" : "Condition.subject",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "Reference",
+        "targetProfile" : [ "https://healthsamurai.github.io/igpop-example/StructureDefinition/Patient-us-core" ]
+      } ]
+    } ]
+  }
+}

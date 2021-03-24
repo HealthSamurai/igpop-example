@@ -1,0 +1,70 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "CarePlan",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/CarePlan",
+  "name" : "CarePlan",
+  "title" : "US Core CarePlan Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "This profile sets minimum expectations for the CarePlan resource to record search and fetch assessment and plan of treatment data associated with a patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "CarePlan",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/CarePlan",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "CarePlan.subject",
+      "path" : "CarePlan.subject",
+      "mustSupport" : true,
+      "min" : 1,
+      "refs" : [ "./Patient" ]
+    }, {
+      "id" : "CarePlan.text",
+      "path" : "CarePlan.text",
+      "mustSupport" : true
+    }, {
+      "id" : "CarePlan.text.status",
+      "path" : "CarePlan.text.status",
+      "mustSupport" : true,
+      "min" : 1,
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/narrative-status",
+        "strength" : "extensible",
+        "description" : null
+      }
+    }, {
+      "id" : "CarePlan.status",
+      "path" : "CarePlan.status",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "code"
+      } ],
+      "valuset" : {
+        "id" : "fhir:request-status"
+      }
+    }, {
+      "id" : "CarePlan.intent",
+      "path" : "CarePlan.intent",
+      "mustSupport" : true,
+      "min" : 1,
+      "valuset" : {
+        "id" : "fhir:care-plan-intent"
+      }
+    }, {
+      "id" : "CarePlan.category",
+      "path" : "CarePlan.category",
+      "mustSupport" : true,
+      "contains" : {
+        "coding" : [ {
+          "system" : "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+          "code" : "assess-plan"
+        } ]
+      }
+    } ]
+  }
+}

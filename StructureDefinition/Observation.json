@@ -1,0 +1,383 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "Observation",
+  "url" : "https://healthsamurai.github.io/igpop-example/StructureDefinition/Observation",
+  "name" : "Observation",
+  "title" : "US Core Observation Profile",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2021-03-23",
+  "publisher" : "US Core",
+  "description" : "Measurements and simple assertions made about a patient, device or other subject.",
+  "fhirVersion" : "4.0.1",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "Observation",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "Observation.id",
+      "path" : "Observation.id",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "id"
+      } ]
+    }, {
+      "id" : "Observation.meta",
+      "path" : "Observation.meta",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Meta"
+      } ]
+    }, {
+      "id" : "Observation.language",
+      "path" : "Observation.language",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "code"
+      } ]
+    }, {
+      "id" : "Observation.text",
+      "path" : "Observation.text",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Narrative"
+      } ]
+    }, {
+      "id" : "Observation.identifier",
+      "path" : "Observation.identifier",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Identifier"
+      } ]
+    }, {
+      "id" : "Observation.basedOn",
+      "path" : "Observation.basedOn",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.partOf",
+      "path" : "Observation.partOf",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.status",
+      "path" : "Observation.status",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "code"
+      } ],
+      "binding" : {
+        "valueSet" : "https://healthsamurai.github.io/igpop-example/ValueSet/http://hl7.org/fhir/ValueSet/observation-status|4.0.0",
+        "strength" : "required",
+        "description" : null
+      }
+    }, {
+      "id" : "Observation.category",
+      "path" : "Observation.category",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.code",
+      "path" : "Observation.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.subject",
+      "path" : "Observation.subject",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.focus",
+      "path" : "Observation.focus",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.encounter",
+      "path" : "Observation.encounter",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.effective[x]",
+      "path" : "Observation.effective[x]",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "dateTime"
+      }, {
+        "code" : "Period"
+      }, {
+        "code" : "Timing"
+      }, {
+        "code" : "instant"
+      } ]
+    }, {
+      "id" : "Observation.issued",
+      "path" : "Observation.issued",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "instant"
+      } ]
+    }, {
+      "id" : "Observation.performer",
+      "path" : "Observation.performer",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.value[x]",
+      "path" : "Observation.value[x]",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Quantity"
+      }, {
+        "code" : "CodeableConcept"
+      }, {
+        "code" : "string"
+      }, {
+        "code" : "boolean"
+      }, {
+        "code" : "integer"
+      }, {
+        "code" : "Range"
+      }, {
+        "code" : "Ratio"
+      }, {
+        "code" : "SampledData"
+      }, {
+        "code" : "time"
+      }, {
+        "code" : "dateTime"
+      }, {
+        "code" : "Period"
+      } ]
+    }, {
+      "id" : "Observation.dataAbsentReason",
+      "path" : "Observation.dataAbsentReason",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.interpretation",
+      "path" : "Observation.interpretation",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.note",
+      "path" : "Observation.note",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Annotation"
+      } ]
+    }, {
+      "id" : "Observation.bodySite",
+      "path" : "Observation.bodySite",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.method",
+      "path" : "Observation.method",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.specimen",
+      "path" : "Observation.specimen",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.device",
+      "path" : "Observation.device",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange",
+      "path" : "Observation.referenceRange",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*"
+    }, {
+      "id" : "Observation.referenceRange.id",
+      "path" : "Observation.referenceRange.id",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.low",
+      "path" : "Observation.referenceRange.low",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Quantity"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.high",
+      "path" : "Observation.referenceRange.high",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Quantity"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.type",
+      "path" : "Observation.referenceRange.type",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.appliesTo",
+      "path" : "Observation.referenceRange.appliesTo",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.age",
+      "path" : "Observation.referenceRange.age",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Range"
+      } ]
+    }, {
+      "id" : "Observation.referenceRange.text",
+      "path" : "Observation.referenceRange.text",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "Observation.hasMember",
+      "path" : "Observation.hasMember",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.derivedFrom",
+      "path" : "Observation.derivedFrom",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "id" : "Observation.component",
+      "path" : "Observation.component",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*"
+    }, {
+      "id" : "Observation.component.id",
+      "path" : "Observation.component.id",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "Observation.component.code",
+      "path" : "Observation.component.code",
+      "mustSupport" : true,
+      "min" : 1,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.component.value[x]",
+      "path" : "Observation.component.value[x]",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "Quantity"
+      }, {
+        "code" : "CodeableConcept"
+      }, {
+        "code" : "string"
+      }, {
+        "code" : "boolean"
+      }, {
+        "code" : "integer"
+      }, {
+        "code" : "Range"
+      }, {
+        "code" : "Ratio"
+      }, {
+        "code" : "SampledData"
+      }, {
+        "code" : "time"
+      }, {
+        "code" : "dateTime"
+      }, {
+        "code" : "Period"
+      } ]
+    }, {
+      "id" : "Observation.component.dataAbsentReason",
+      "path" : "Observation.component.dataAbsentReason",
+      "mustSupport" : true,
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.component.interpretation",
+      "path" : "Observation.component.interpretation",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "CodeableConcept"
+      } ]
+    }, {
+      "id" : "Observation.component.referenceRange",
+      "path" : "Observation.component.referenceRange",
+      "mustSupport" : true,
+      "min" : 0,
+      "max" : "*"
+    } ]
+  }
+}
